@@ -57,7 +57,7 @@ public class DeleteFavoriteHandler implements InputMessageHandler{
         if (botState.equals(BotState.DELETE_BUTTON)) {
             Set<Place> favorits = profileData.getFavorite();
             Optional<Place> place = placeMethodsService.findPlaceById(Integer.parseInt(usersAnswer));
-            if (place.isEmpty()) {
+            if (!place..isPresent()) {
                 replyToUser = new SendMessage(chatId, "Элемент с таким id не найден!");
             } else {
                 favorits.removeIf(p -> p.getId().equals(Integer.parseInt(usersAnswer)));
