@@ -60,7 +60,7 @@ public class AddFavoriteHandler implements InputMessageHandler  {
         if (botState.equals(BotState.PROFILE_FILLED)) {
             profileData.setChatId(chatId);
             Optional<Place> favorite = placeMethodsService.findPlaceById(Integer.parseInt(usersAnswer));
-            if (favorite.isEmpty()) {
+           if (!favorite.isPresent()) {
                 replyToUser = new SendMessage(chatId, "Элемент с таким id не найден!");
             } else {
                 profileData.addFavorite(favorite);
