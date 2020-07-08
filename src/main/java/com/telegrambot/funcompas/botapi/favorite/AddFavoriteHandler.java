@@ -13,6 +13,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import java.util.Optional;
 
+
 @Component
 public class AddFavoriteHandler implements InputMessageHandler  {
 
@@ -60,7 +61,7 @@ public class AddFavoriteHandler implements InputMessageHandler  {
         if (botState.equals(BotState.PROFILE_FILLED)) {
             profileData.setChatId(chatId);
             Optional<Place> favorite = placeMethodsService.findPlaceById(Integer.parseInt(usersAnswer));
-           if (!favorite.isPresent()) {
+            if (!favorite.isPresent()) {
                 replyToUser = new SendMessage(chatId, "Элемент с таким id не найден!");
             } else {
                 profileData.addFavorite(favorite);
